@@ -26,7 +26,7 @@ export const PasswordInput = React.forwardRef<
         />
 
         <button
-          className="absolute lg:ml-[22rem] mt-[2.4rem] sm:ml-[16rem]"
+          className="absolute md:ml-[22rem] mt-[2.4rem] sm:ml-[15rem]"
           onClick={() => setIsPassword((prevStat) => !prevStat)}
         >
           {" "}

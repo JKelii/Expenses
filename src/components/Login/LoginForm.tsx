@@ -3,13 +3,16 @@ import {
   GlobeIcon,
   PersonIcon,
 } from "@radix-ui/react-icons";
-import { CompanyButton } from "./CompanyButton";
-import { PasswordInput } from "./PasswordInput";
+import { CompanyButton } from "../Button/CompanyButton";
+import { PasswordInput } from "../Input/PasswordInput";
 import { useForm } from "react-hook-form";
-import ButtonComponent from "../../Button/Button";
+import ButtonComponent from "../Button/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { userSchemaLogin } from "./Schema/userValidation";
+import { userSchemaLogin } from "./schema/userValidation";
 import { Input } from "@/components/Input/Input";
+
+import supabase from "@/lib/supabase";
+import { showToast } from "../ui/popper";
 
 export function LoginForm() {
   const {
@@ -20,8 +23,15 @@ export function LoginForm() {
     resolver: yupResolver(userSchemaLogin),
   });
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = handleSubmit(async (form) => {
+    const { error, data } = await supabase.auth.signInWithPassword(form);
+    if (data.user) {
+      showToast("success", "You're logged into account.");
+    }
+    if (error) {
+      showToast("error", error.message);
+    }
+    console.log(error?.message, data);
   });
 
   return (

@@ -1,7 +1,7 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LoginForm } from "../Login.tsx/LoginForm";
+import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
+import { LoginForm } from "./LoginForm";
 
-import { RegisterForm } from "../../Register/RegisterForm";
+import { RegisterForm } from "@/components/Register/RegisterForm";
 
 export function LoginMenu() {
   return (
@@ -11,13 +11,7 @@ export function LoginMenu() {
         className="p-4 border-2 border-gray-200 rounded-lg bg-gradient-to-r from-zinc-200 to-slate-50"
       >
         <TabsList className=" w-96">
-          <TabsTrigger value="account" className="w-1/2 rounded-lg">
-            Login
-          </TabsTrigger>
-
-          <TabsTrigger value="password" className="w-1/2 rounded-lg ">
-            Register
-          </TabsTrigger>
+          <a href="/register">Register</a>
         </TabsList>
 
         <TabsContent

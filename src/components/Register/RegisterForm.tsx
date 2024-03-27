@@ -1,13 +1,15 @@
 import { EnvelopeClosedIcon, PersonIcon } from "@radix-ui/react-icons";
-import { PasswordInput } from "../Login/Login.tsx/PasswordInput";
+import { PasswordInput } from "../Input/PasswordInput";
 import Button from "../Button/Button";
-import { CompanyButton } from "../Login/Login.tsx/CompanyButton";
+import { CompanyButton } from "../Button/CompanyButton";
 import { GlobeIcon } from "lucide-react";
-import { userSchemaRegister } from "../Login/Login.tsx/Schema/userValidation";
+import { userSchemaRegister } from "../Login/schema/userValidation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "@/components/Input/Input";
 import supabase from "@/lib/supabase";
+("../../../");
+import { Toaster, showToast } from "../ui/popper";
 
 export function RegisterForm() {
   const {
@@ -18,16 +20,22 @@ export function RegisterForm() {
     resolver: yupResolver(userSchemaRegister),
   });
 
-  const onSubmit = handleSubmit((form) => {
-    const { data, error } = supabase.auth.signUp(form);
+  const onSubmit = handleSubmit(async (form) => {
+    const { error, data } = await supabase.auth.signUp(form);
+    if (data.user) {
+      showToast("success", "Account created! Now confirm your e-mail.");
+    }
+    if (error) {
+      showToast("error", error.message);
+    }
+    console.log(error?.message, data);
   });
 
   return (
-    <main className="flex flex-col gap-4 lg:w-full sm:w-[290px] md:w-full">
+    <main className="flex flex-col gap-4 lg:w-11/12 sm:w-[270px] md:w-full ">
       <h1 className="font-bold text-center text-purple-900 sm:text-md lg:text-xl ">
         Register to start spending your money wisely!
       </h1>
-
       <form onSubmit={onSubmit} className="flex flex-col gap-2">
         <Input
           {...register("name")}
@@ -46,7 +54,7 @@ export function RegisterForm() {
           label="password"
           error={errors.password?.message}
         />
-
+        <Toaster />
         <Button text={"Continue"} />
       </form>
       <div className="flex flex-row items-center justify-center gap-4">
