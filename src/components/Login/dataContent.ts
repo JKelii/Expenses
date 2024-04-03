@@ -1,5 +1,3 @@
 import * as React from "react";
 
-export const DataContext = React.createContext<formState | undefined>(
-  undefined,
-);
+export const DataContext = React.createContext<undefined>(undefined);
