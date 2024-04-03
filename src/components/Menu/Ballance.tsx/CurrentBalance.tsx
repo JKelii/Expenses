@@ -12,6 +12,9 @@ export const CurrentBalance = ({
 }: CurrentBalanceProps) => {
   return (
     <main className="flex flex-col gap-4">
+      <nav className="flex flex-row items-center justify-center">
+        <h1>Hi user</h1>
+      </nav>
       <div className="flex flex-row items-center justify-center gap-1">
         <LayersIcon />
         <h1 className="text-xl"> Current Ballance: </h1>

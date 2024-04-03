@@ -1,4 +1,4 @@
-import { LoginMenu } from "@/components/Login/LoginMenu/LoginMenu";
+import { LoginMenu } from "@/components/Login/LoginMenu";
 import { createLazyFileRoute } from "@tanstack/react-router";
 
 export const Route = createLazyFileRoute("/")({

@@ -1,4 +1,5 @@
-import { LoginMenu } from "@/components/Login/LoginMenu/LoginMenu";
+import { RegisterMenu } from "@/components/Register/RegisterMenu";
+
 import { createLazyFileRoute } from "@tanstack/react-router";
 
 export const Route = createLazyFileRoute("/register")({
@@ -8,7 +9,7 @@ export const Route = createLazyFileRoute("/register")({
 function Register() {
   return (
     <div>
-      <LoginMenu />
+      <RegisterMenu />
     </div>
   );
 }
