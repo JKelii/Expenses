@@ -10,9 +10,9 @@ import ButtonComponent from "../Button/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { userSchemaLogin } from "./schema/userValidation";
 import { Input } from "@/components/Input/Input";
-
 import supabase from "@/lib/supabase";
 import { showToast } from "../ui/popper";
+import { Toaster } from "sonner";
 
 export function LoginForm() {
   const {
@@ -31,7 +31,6 @@ export function LoginForm() {
     if (error) {
       showToast("error", error.message);
     }
-    console.log(error?.message, data);
   });
 
   return (
@@ -55,7 +54,7 @@ export function LoginForm() {
           label="password"
           error={errors.password?.message}
         />
-
+        <Toaster />
         <div className="flex justify-between w-full">
           <div className="flex flex-row gap-1">
             <input type="checkbox" id="checkbox" />
