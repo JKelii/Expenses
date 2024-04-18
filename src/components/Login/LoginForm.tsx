@@ -31,6 +31,7 @@ export function LoginForm() {
     if (error) {
       showToast("error", error.message);
     }
+    console.log(data);
   });
 
   return (

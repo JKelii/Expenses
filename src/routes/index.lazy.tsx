@@ -1,4 +1,5 @@
 import { LoginMenu } from "@/components/Login/LoginMenu";
+import { Switch } from "@/components/ui/switch";
 import { createLazyFileRoute } from "@tanstack/react-router";
 
 export const Route = createLazyFileRoute("/")({
@@ -6,8 +7,15 @@ export const Route = createLazyFileRoute("/")({
 });
 
 function Index() {
+  const handleClick = () => {
+    document.documentElement.classList.toggle("dark");
+  };
+
   return (
-    <div className="w-full h-full p-2 ">
+    <div>
+      <div className="flex justify-end m-4">
+        <Switch onClick={handleClick} />
+      </div>
       <LoginMenu />
     </div>
   );

@@ -1,0 +1,9 @@
+:root {
+  --bg-main-color: white;
+  --text-main-color: purple;
+}
+
+.dark {
+  --bg-main-color: black;
+  --text-main-color: white;
+}
